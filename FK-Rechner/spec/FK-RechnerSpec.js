@@ -62,7 +62,7 @@ describe("FK-Rechner", function () {
 
         it("mit einem GP von 350, AFK von 0, WdJ und 20 WF bekommt man (unbespielt) bei einem RSZ von 0.25", function () {
             var endfk = endFK(350, 0, 0.25, gesamtReitstunden(true, 20), false);
-            expect(endfk).toBe(588.5);
+            expect(endfk).toBe(588.50);
 
         });
 
