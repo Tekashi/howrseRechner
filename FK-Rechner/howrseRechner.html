@@ -1,18 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="source/FK-Rechner.js" ></script>
-    <title>Berechnungen für howrse</title>
+    <script type="text/javascript" src="source/FK-Rechner.js">
+
+
+    </script>
+    <title>Berechnungen f&uuml;r howrse</title>
 </head>
-<body>
+<body onload="befuelleWolkenfetzen()">
 <h1>Berechnung der End-FK</h1>
-Genetisches Potential: <input type="text" id="genetischesPotential" name="genetisches Potential" /><br />
+Genetisches Potential: <input type="text" id="genetischesPotential" name="genetisches Potential"/><br/>
+Anfangs-F&auml;higkeiten: <input type="text" id="anfangsFK"/><br/>
+Zuwachs durch Reitstunde: <input type="text" id="rsZuwachs"/><br/>
+<input type="checkbox" id="wasserDerJugend" value="ja"> Das Pferd bekommt Wasser der Jugend.<br/>
+<input type="checkbox" id="bespieltJaNein" value="ja"> Das Pferd ist bereits bespielt.<br/>
+Das Pferd bekommt
+<select id="wolkenfetzen">
+    <option value="0">keine</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
+    <option value="20">20</option>
+
+</select> Wolkenfetzen.<br />
+
+
+
 <button onclick="endFKBerechnung()">Berechnen</button>
 <script>
+    function befuelleWolkenfetzen() {
+        var select = document.getElementById("wolkenfetzen");
+        for (var i = 0; i <= 20; i++) {
+            var option = document.createElement("eintrag");
+            select.options.add(option);
+            option.text = i;
+            option.value = i;
+        }
+    };
     function endFKBerechnung() {
         var ergebnisfeld = document.getElementById("EndFK");
         var gp = document.getElementById("genetischesPotential").value;
-        ergebnisfeld.innerHTML = "End-F&auml;higkeiten: " + endFK(parseInt(gp),600,0.25,377,false);
+        var afk = document.getElementById("anfangsFK").value;
+        var rsz = document.getElementById("rsZuwachs").value;
+        ergebnisfeld.innerHTML = "End-F&auml;higkeiten: " + endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
+                gesamtReitstunden(wasserDerJugend === "ja", parseInt(wolkenfetzen)), bespieltJaNein === "ja");
     }
 </script>
 <p id="EndFK"></p>
