@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="source/FK-Rechner.js" ></script>
+    <title>Berechnungen für howrse</title>
+</head>
+<body>
+<h1>Berechnung der End-FK</h1>
+Genetisches Potential: <input type="text" id="genetischesPotential" name="genetisches Potential" /><br />
+<button onclick="endFKBerechnung()">Berechnen</button>
+<script>
+    function endFKBerechnung() {
+        var ergebnisfeld = document.getElementById("EndFK");
+        var gp = document.getElementById("genetischesPotential").value;
+        ergebnisfeld.innerHTML = "End-F&auml;higkeiten: " + endFK(parseInt(gp),600,0.25,377,false);
+    }
+</script>
+<p id="EndFK"></p>
+</body>
+</html>
