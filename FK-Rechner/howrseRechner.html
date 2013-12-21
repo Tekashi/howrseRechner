@@ -58,8 +58,11 @@ Das Pferd bekommt
         var gp = document.getElementById("genetischesPotential").value;
         var afk = document.getElementById("anfangsFK").value;
         var rsz = document.getElementById("rsZuwachs").value;
+        var wasserDerJugend = document.getElementById("wasserDerJugend").checked;
+        var bespieltJaNein = document.getElementById("bespieltJaNein").checked;
+        var wolkenfetzen = document.getElementById("wolkenfetzen").value;
         ergebnisfeld.innerHTML = "End-F&auml;higkeiten: " + endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
-                gesamtReitstunden(wasserDerJugend === "ja", parseInt(wolkenfetzen)), bespieltJaNein === "ja");
+                gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), bespieltJaNein);
     }
 </script>
 <p id="EndFK"></p>
