@@ -7,8 +7,8 @@ function afk (gpVater, gpMutter, blupVater, blupMutter, at) {
     var afkMax = runde(afk1 * 1.04);
     var afkMin = runde(afk1 * 0.96);
 
-    var afkMinAT = afkMin * 1.5;
-    var afkMaxAT = afkMax * 1.5;
+    var afkMinAT = runde(afkMin * 1.5);
+    var afkMaxAT = runde(afkMax * 1.5);
 
     if(at) {
         return {afkMin:afkMinAT, afkMax:afkMaxAT};

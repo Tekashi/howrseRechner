@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="source/FK-Rechner.js">
+    <script type="text/javascript" src="source/FK-Rechner.js"></script>
+    <script type="text/javascript" src="source/AFK-Rechner.js"></script>
+    <script type="text/javascript" src="source/Dressur-FK.js"></script>
 
-
-    </script>
     <title>Berechnungen f&uuml;r howrse</title>
 </head>
 <body onload="befuelleWolkenfetzen()">
 <h1>Berechnung der End-FK</h1>
-Genetisches Potential: <input type="text" id="genetischesPotential" name="genetisches Potential"/><br/>
+Genetisches Potential: <input type="text" id="genetischesPotential" /><br/>
 Anfangs-F&auml;higkeiten: <input type="text" id="anfangsFK"/><br/>
 Zuwachs durch Reitstunde: <input type="text" id="rsZuwachs"/><br/>
 <input type="checkbox" id="wasserDerJugend" value="ja"> Das Pferd bekommt Wasser der Jugend.<br/>
@@ -54,17 +54,50 @@ Das Pferd bekommt
         }
     };
     function endFKBerechnung() {
-        var ergebnisfeld = document.getElementById("EndFK");
         var gp = document.getElementById("genetischesPotential").value;
         var afk = document.getElementById("anfangsFK").value;
         var rsz = document.getElementById("rsZuwachs").value;
         var wasserDerJugend = document.getElementById("wasserDerJugend").checked;
         var bespieltJaNein = document.getElementById("bespieltJaNein").checked;
         var wolkenfetzen = document.getElementById("wolkenfetzen").value;
-        ergebnisfeld.innerHTML = "End-F&auml;higkeiten: " + endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
+        document.getElementById("EndFK").innerHTML = "End-F&auml;higkeiten: " +
+                endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
                 gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), bespieltJaNein);
     }
 </script>
 <p id="EndFK"></p>
+<br />
+
+
+
+
+
+
+
+
+<h1>Berechnung der Anfangs-FK</h1>
+Genetisches Potential der Mutter: <input type="text" id="genetischesPotentialMama" /><br />
+Genetisches Potential des Vaters: <input type="text" id="genetischesPotentialPapa" /><br />
+BLUP der Mutter: <input type="text" id="blupMama"><br />
+BLUP des Vaters: <input type="text" id="blupPapa"><br />
+<input type="checkbox" id="aphroditesTraenen" value="ja"> Die Mutter bekommt Aphrodites Tr&auml;nen.<br/>
+
+<script>
+    function anfangsFKBerechnung() {
+        var gpMama = document.getElementById("genetischesPotentialMama").value;
+        var gpPapa = document.getElementById("genetischesPotentialPapa").value;
+        var blupMama = document.getElementById("blupMama").value;
+        var blupPapa = document.getElementById("blupPapa").value;
+        var aphroditesTraenen = document.getElementById("aphroditesTraenen").checked;
+        var ergebnisAFK = afk(parseFloat(gpMama), parseFloat(gpPapa),
+                parseFloat(blupMama), parseFloat(blupPapa), aphroditesTraenen);
+        document.getElementById("anfangsFKFohlen").innerHTML =  "Anfangs-F&auml;higkeiten: von " + ergebnisAFK.afkMin +
+                " bis " + ergebnisAFK.afkMax;
+    }
+</script>
+<button onclick="anfangsFKBerechnung()">Berechnen</button>
+<p id="anfangsFKFohlen"></p>
+
+
 </body>
 </html>
