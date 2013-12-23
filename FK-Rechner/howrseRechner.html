@@ -99,5 +99,42 @@ BLUP des Vaters: <input type="text" id="blupPapa"><br />
 <p id="anfangsFKFohlen"></p>
 
 
+
+
+
+
+
+
+<h1>Berechnung der Dressur-FK</h1>
+
+Genetisches Potential: <input type="text" id="dGenetischesPotential" /><br />
+Genetisches Dressur-Potential: <input type="text" id="dGenetischesPotentialDressur" /><br />
+Dressur-F&auml;higkeiten: <input type="text" id="dressurFK" /><br />
+Reitstunden-Zuwachs: <input type="text" id="dressurRSZ" /><br />
+<input type="checkbox" id="dressurBesteFK" value="ja"> Dressur geh&ouml;rt zu den zwei besten F&auml;higkeiten des Pferds.<br/>
+<input type="checkbox" id="dBereitsBespielt" value="ja"> Das Pferd ist bereits bespielt.<br/>
+<input type="checkbox" id="dGestrandet" value="ja"> Das Pferd wird auf Dressur gestrandet.<br/>
+
+<script>
+    function dressurFKBerechnung() {
+        var dGenetischesPotential = document.getElementById("dGenetischesPotential").value;
+        var dGenetischesPotentialDressur = document.getElementById("dGenetischesPotentialDressur").value;
+        var dressurFK = document.getElementById("dressurFK").value;
+        var dressurRSZ = document.getElementById("dressurRSZ").value;
+        var dressurBesteFK = document.getElementById("dressurBesteFK").checked;
+        var dBereitsBespielt = document.getElementById("dBereitsBespielt").checked;
+        var dGestrandet = document.getElementById("dGestrandet").checked;
+        var ergebnisDFK = dressurFK(parseFloat(dGenetischesPotential), parseFloat(dGenetischesPotentialDressur),
+                parseFloat(dressurFK), dressurBesteFK, parseFloat(dressurRSZ), dGestrandet, dBereitsBespielt);
+        document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
+        document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
+
+
+    }
+
+</script>
+<button onclick="dressurFKBerechnung()">Berechnen</button>
+<p id="dressurFKErgebnis"></p>
+
 </body>
 </html>
