@@ -1,140 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="source/FK-Rechner.js"></script>
     <script type="text/javascript" src="source/AFK-Rechner.js"></script>
     <script type="text/javascript" src="source/Dressur-FK.js"></script>
 
     <title>Berechnungen f&uuml;r howrse</title>
 </head>
-<body onload="befuelleWolkenfetzen()">
-<h1>Berechnung der End-FK</h1>
-Genetisches Potential: <input type="text" id="genetischesPotential" /><br/>
-Anfangs-F&auml;higkeiten: <input type="text" id="anfangsFK"/><br/>
-Zuwachs durch Reitstunde: <input type="text" id="rsZuwachs"/><br/>
-<input type="checkbox" id="wasserDerJugend" value="ja"> Das Pferd bekommt Wasser der Jugend.<br/>
-<input type="checkbox" id="bespieltJaNein" value="ja"> Das Pferd ist bereits bespielt.<br/>
-Das Pferd bekommt
-<select id="wolkenfetzen">
-    <option value="0">keine</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
+<body class="container" onload="befuelleWolkenfetzen()">
 
-</select> Wolkenfetzen.<br />
+<div class="row">
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Berechnung der End-FK</h3></div>
+            <div class="panel-body">
 
 
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="genetischesPotential">
+                        </div>
 
-<button onclick="endFKBerechnung()">Berechnen</button>
-<script>
-    function befuelleWolkenfetzen() {
-        var select = document.getElementById("wolkenfetzen");
-        for (var i = 0; i <= 20; i++) {
-            var option = document.createElement("eintrag");
-            select.options.add(option);
-            option.text = i;
-            option.value = i;
-        }
-    };
-    function endFKBerechnung() {
-        var gp = document.getElementById("genetischesPotential").value;
-        var afk = document.getElementById("anfangsFK").value;
-        var rsz = document.getElementById("rsZuwachs").value;
-        var wasserDerJugend = document.getElementById("wasserDerJugend").checked;
-        var bespieltJaNein = document.getElementById("bespieltJaNein").checked;
-        var wolkenfetzen = document.getElementById("wolkenfetzen").value;
-        document.getElementById("EndFK").innerHTML = "End-F&auml;higkeiten: " +
-                endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
-                gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), bespieltJaNein);
-    }
-</script>
-<p id="EndFK"></p>
-<br />
+                        <label class="control-label col-sm-8" for="genetischesPotential">Genetisches Potential</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="anfangsFK">
+                        </div>
+
+                        <label class="control-label col-sm-8" for="anfangsFK">Anfangs-F&auml;higkeiten</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="rsZuwachs">
+                        </div>
+
+                        <label class="control-label col-sm-8" for="rsZuwachs">Zuwachs durch Reitstunde</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="wasserDerJugend">Das Pferd bekommt Wasser der Jugend.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="bespieltJaNein">Das Pferd ist bereits bespielt.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    Das Pferd bekommt
+
+                    <select class="form-group" id="wolkenfetzen">
+                        <option value="0">keine</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+
+                    </select>
+                    Wolkenfetzen.
+                </div>
+                <br/>
+                <button type="button" class="btn btn-primary" onclick="endFKBerechnung()">Berechnen</button>
+                <script>
+                    function befuelleWolkenfetzen() {
+                        var select = document.getElementById("wolkenfetzen");
+                        for (var i = 0; i <= 20; i++) {
+                            var option = document.createElement("eintrag");
+                            select.options.add(option);
+                            option.text = i;
+                            option.value = i;
+                        }
+                    }
+
+                    function endFKBerechnung() {
+                        var gp = document.getElementById("genetischesPotential").value;
+                        var afk = document.getElementById("anfangsFK").value;
+                        var rsz = document.getElementById("rsZuwachs").value;
+                        var wasserDerJugend = document.getElementById("wasserDerJugend").checked;
+                        var bespieltJaNein = document.getElementById("bespieltJaNein").checked;
+                        var wolkenfetzen = document.getElementById("wolkenfetzen").value;
+                        document.getElementById("EndFK").innerHTML = "End-F&auml;higkeiten: " +
+                                endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
+                                        gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), bespieltJaNein);
+                    }
+                </script>
+                <h4 id="EndFK"></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Berechnung der Anfangs-FK</h3></div>
+            <div class="panel-body">
 
 
+               
+                Genetisches Potential der Mutter: <input type="text" id="genetischesPotentialMama"/><br/>
+                Genetisches Potential des Vaters: <input type="text" id="genetischesPotentialPapa"/><br/>
+                BLUP der Mutter: <input type="text" id="blupMama"><br/>
+                BLUP des Vaters: <input type="text" id="blupPapa"><br/>
+                <input type="checkbox" id="aphroditesTraenen" value="ja"> Die Mutter bekommt Aphrodites
+                Tr&auml;nen.<br/>
+
+                <script>
+                    function anfangsFKBerechnung() {
+                        var gpMama = document.getElementById("genetischesPotentialMama").value;
+                        var gpPapa = document.getElementById("genetischesPotentialPapa").value;
+                        var blupMama = document.getElementById("blupMama").value;
+                        var blupPapa = document.getElementById("blupPapa").value;
+                        var aphroditesTraenen = document.getElementById("aphroditesTraenen").checked;
+                        var ergebnisAFK = afk(parseFloat(gpMama), parseFloat(gpPapa),
+                                parseFloat(blupMama), parseFloat(blupPapa), aphroditesTraenen);
+                        document.getElementById("anfangsFKFohlen").innerHTML = "Anfangs-F&auml;higkeiten: von " + ergebnisAFK.afkMin +
+                                " bis " + ergebnisAFK.afkMax;
+                    }
+                </script>
+                <button onclick="anfangsFKBerechnung()">Berechnen</button>
+                <p id="anfangsFKFohlen"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Berechnung der Dressur-FK</h3>
+
+        Genetisches Potential: <input type="text" id="dGenetischesPotential"/><br/>
+        Genetisches Dressur-Potential: <input type="text" id="dGenetischesPotentialDressur"/><br/>
+        Dressur-F&auml;higkeiten: <input type="text" id="dDressurFK"/><br/>
+        Reitstunden-Zuwachs: <input type="text" id="dressurRSZ"/><br/>
+        <input type="checkbox" id="dressurBesteFK" value="ja"> Dressur geh&ouml;rt zu den zwei besten F&auml;higkeiten
+        des
+        Pferds.<br/>
+        <input type="checkbox" id="dBereitsBespielt" value="ja"> Das Pferd ist bereits bespielt.<br/>
+        <input type="checkbox" id="dGestrandet" value="ja"> Das Pferd wird auf Dressur gestrandet.<br/>
+
+        <script>
+            function dressurFKBerechnung() {
+                var dGenetischesPotential = document.getElementById("dGenetischesPotential").value;
+                var dGenetischesPotentialDressur = document.getElementById("dGenetischesPotentialDressur").value;
+                var dDressurFK = document.getElementById("dDressurFK").value;
+                var dressurRSZ = document.getElementById("dressurRSZ").value;
+                var dressurBesteFK = document.getElementById("dressurBesteFK").checked;
+                var dBereitsBespielt = document.getElementById("dBereitsBespielt").checked;
+                var dGestrandet = document.getElementById("dGestrandet").checked;
+                var ergebnisDFK = dressurFK(parseFloat(dGenetischesPotential), parseFloat(dGenetischesPotentialDressur),
+                        parseFloat(dDressurFK), dressurBesteFK, parseFloat(dressurRSZ), dGestrandet, dBereitsBespielt);
+                document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
 
 
+            }
+            ;
+
+        </script>
+        <button onclick="dressurFKBerechnung()">Berechnen</button>
+        <p id="dressurFKErgebnis"></p>
+    </div>
 
 
-
-
-<h1>Berechnung der Anfangs-FK</h1>
-Genetisches Potential der Mutter: <input type="text" id="genetischesPotentialMama" /><br />
-Genetisches Potential des Vaters: <input type="text" id="genetischesPotentialPapa" /><br />
-BLUP der Mutter: <input type="text" id="blupMama"><br />
-BLUP des Vaters: <input type="text" id="blupPapa"><br />
-<input type="checkbox" id="aphroditesTraenen" value="ja"> Die Mutter bekommt Aphrodites Tr&auml;nen.<br/>
-
-<script>
-    function anfangsFKBerechnung() {
-        var gpMama = document.getElementById("genetischesPotentialMama").value;
-        var gpPapa = document.getElementById("genetischesPotentialPapa").value;
-        var blupMama = document.getElementById("blupMama").value;
-        var blupPapa = document.getElementById("blupPapa").value;
-        var aphroditesTraenen = document.getElementById("aphroditesTraenen").checked;
-        var ergebnisAFK = afk(parseFloat(gpMama), parseFloat(gpPapa),
-                parseFloat(blupMama), parseFloat(blupPapa), aphroditesTraenen);
-        document.getElementById("anfangsFKFohlen").innerHTML =  "Anfangs-F&auml;higkeiten: von " + ergebnisAFK.afkMin +
-                " bis " + ergebnisAFK.afkMax;
-    }
-</script>
-<button onclick="anfangsFKBerechnung()">Berechnen</button>
-<p id="anfangsFKFohlen"></p>
-
-
-
-
-
-
-
-
-<h1>Berechnung der Dressur-FK</h1>
-
-Genetisches Potential: <input type="text" id="dGenetischesPotential" /><br />
-Genetisches Dressur-Potential: <input type="text" id="dGenetischesPotentialDressur" /><br />
-Dressur-F&auml;higkeiten: <input type="text" id="dressurFK" /><br />
-Reitstunden-Zuwachs: <input type="text" id="dressurRSZ" /><br />
-<input type="checkbox" id="dressurBesteFK" value="ja"> Dressur geh&ouml;rt zu den zwei besten F&auml;higkeiten des Pferds.<br/>
-<input type="checkbox" id="dBereitsBespielt" value="ja"> Das Pferd ist bereits bespielt.<br/>
-<input type="checkbox" id="dGestrandet" value="ja"> Das Pferd wird auf Dressur gestrandet.<br/>
-
-<script>
-    function dressurFKBerechnung() {
-        var dGenetischesPotential = document.getElementById("dGenetischesPotential").value;
-        var dGenetischesPotentialDressur = document.getElementById("dGenetischesPotentialDressur").value;
-        var dressurFK = document.getElementById("dressurFK").value;
-        var dressurRSZ = document.getElementById("dressurRSZ").value;
-        var dressurBesteFK = document.getElementById("dressurBesteFK").checked;
-        var dBereitsBespielt = document.getElementById("dBereitsBespielt").checked;
-        var dGestrandet = document.getElementById("dGestrandet").checked;
-        var ergebnisDFK = dressurFK(parseFloat(dGenetischesPotential), parseFloat(dGenetischesPotentialDressur),
-                parseFloat(dressurFK), dressurBesteFK, parseFloat(dressurRSZ), dGestrandet, dBereitsBespielt);
-        document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
-        document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
-
-
-    }
-
-</script>
-<button onclick="dressurFKBerechnung()">Berechnen</button>
-<p id="dressurFKErgebnis"></p>
-
+</div>
 </body>
 </html>
