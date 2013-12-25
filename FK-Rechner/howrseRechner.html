@@ -56,16 +56,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="bespieltJaNein">Das Pferd ist bereits bespielt.
-                            </label>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="form-inline">
@@ -114,11 +104,10 @@
                     var afk = document.getElementById("anfangsFK").value;
                     var rsz = document.getElementById("rsZuwachs").value;
                     var wasserDerJugend = document.getElementById("wasserDerJugend").checked;
-                    var bespieltJaNein = document.getElementById("bespieltJaNein").checked;
                     var wolkenfetzen = document.getElementById("wolkenfetzen").value;
                     document.getElementById("EndFK").innerHTML = "End-F&auml;higkeiten: " +
                             endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
-                                    gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), bespieltJaNein);
+                                    gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), false);
                 }
             </script>
             <button type="button" class="btn btn-primary" onclick="endFKBerechnung()">Berechnen</button>
@@ -258,16 +247,6 @@
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" id="dBereitsBespielt">Das Pferd ist bereits bespielt.
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="checkbox">
-                            <label>
                                 <input type="checkbox" id="dGestrandet">Das Pferd wird auf Dressur gestrandet.
                             </label>
                         </div>
@@ -323,13 +302,12 @@
                     var dDressurFK = document.getElementById("dDressurFK").value;
                     var dressurRSZ = document.getElementById("dressurRSZ").value;
                     var dressurBesteFK = document.getElementById("dressurBesteFK").checked;
-                    var dBereitsBespielt = document.getElementById("dBereitsBespielt").checked;
                     var dGestrandet = document.getElementById("dGestrandet").checked;
                     var dWasserDerJugend = document.getElementById("dWasserDerJugend").checked;
                     var dWolkenfetzen = document.getElementById("dWolkenfetzen").value;
                     var ergebnisDFK = dressurFK(parseFloat(dGenetischesPotential), parseFloat(dGenetischesPotentialDressur),
                             parseFloat(dDressurFK), dressurBesteFK, parseFloat(dressurRSZ),
-                            gesamtReitstunden(dWasserDerJugend, dWolkenfetzen), dGestrandet, dBereitsBespielt);
+                            gesamtReitstunden(dWasserDerJugend, dWolkenfetzen), dGestrandet, false);
                     document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
 
 
