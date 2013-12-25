@@ -325,7 +325,7 @@
                     var dBereitsBespielt = document.getElementById("dBereitsBespielt").checked;
                     var dGestrandet = document.getElementById("dGestrandet").checked;
                     var dWasserDerJugend = document.getElementById("dWasserDerJugend").checked;
-                    var dWolkenfetzen = document.getElementById("dWolkenfetzen").checked;
+                    var dWolkenfetzen = document.getElementById("dWolkenfetzen").value;
                     var ergebnisDFK = dressurFK(parseFloat(dGenetischesPotential), parseFloat(dGenetischesPotentialDressur),
                             parseFloat(dDressurFK), dressurBesteFK, parseFloat(dressurRSZ),
                             gesamtReitstunden(dWasserDerJugend, dWolkenfetzen), dGestrandet, dBereitsBespielt);
