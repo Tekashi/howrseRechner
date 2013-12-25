@@ -7,7 +7,7 @@
  RS-Zuwachs:
  Wird WdJ gegeben?
  Werden WF gegeben?
- Wird nach Dressur gestrandet?
+ Wird auf Dressur gestrandet?
  Bereits bespielt?
 
 
@@ -50,6 +50,6 @@ function dressurFK(gp, dressurGP, dressurFK, besteDisziplin, rsz, gesamtReitstun
     }
 
 
-};
+}
 
 
