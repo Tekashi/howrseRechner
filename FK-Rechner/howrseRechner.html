@@ -111,7 +111,10 @@
                     if (isNaN(endFKErgebnis)) {
                         ausgabe = "Bitte gib Werte ein!";
                     }
-                    document.getElementById("EndFK").innerHTML = ausgabe;
+                    var element = document.getElementById("EndFK");
+                    element.innerHTML = ausgabe;
+                    element.className = "alert alert-danger";
+
 
                 }
             </script>
@@ -190,7 +193,10 @@
                         if (isNaN(ergebnisAFK.afkMax)) {
                             ausgabe = "Bitte gib Werte ein!"
                         }
-                        document.getElementById("anfangsFKFohlen").innerHTML = ausgabe;
+                        var element = document.getElementById("anfangsFKFohlen");
+                        element.innerHTML = ausgabe;
+                        element.className = "alert alert-danger";
+
                     }
                 </script>
                 <button type="button" class="btn btn-primary" onclick="anfangsFKBerechnung()">Berechnen</button>
@@ -321,7 +327,9 @@
                     if (isNaN(ergebnisDFK)) {
                         ausgabe = "Bitte gib Werte ein!"
                     }
-                    document.getElementById("dressurFKErgebnis").innerHTML = ausgabe;
+                    var element = document.getElementById("dressurFKErgebnis");
+                    element.innerHTML = ausgabe;
+                    element.className = "alert alert-danger";
 
 
                 }
