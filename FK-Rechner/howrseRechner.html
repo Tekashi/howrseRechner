@@ -105,9 +105,14 @@
                     var rsz = document.getElementById("rsZuwachs").value;
                     var wasserDerJugend = document.getElementById("wasserDerJugend").checked;
                     var wolkenfetzen = document.getElementById("wolkenfetzen").value;
-                    document.getElementById("EndFK").innerHTML = "End-F&auml;higkeiten: " +
-                            endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
-                                    gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), false);
+                    var endFKErgebnis = endFK(parseFloat(gp), parseFloat(afk), parseFloat(rsz),
+                            gesamtReitstunden(wasserDerJugend, parseInt(wolkenfetzen)), false);
+                    var ausgabe = "End-F&auml;higkeiten: " + endFKErgebnis;
+                    if (isNaN(endFKErgebnis)) {
+                        ausgabe = "Bitte gib Werte ein!";
+                    }
+                    document.getElementById("EndFK").innerHTML = ausgabe;
+
                 }
             </script>
             <button type="button" class="btn btn-primary" onclick="endFKBerechnung()">Berechnen</button>
@@ -180,8 +185,12 @@
                         var aphroditesTraenen = document.getElementById("aphroditesTraenen").checked;
                         var ergebnisAFK = afk(parseFloat(gpMama), parseFloat(gpPapa),
                                 parseFloat(blupMama), parseFloat(blupPapa), aphroditesTraenen);
-                        document.getElementById("anfangsFKFohlen").innerHTML = "Anfangs-F&auml;higkeiten: von " + ergebnisAFK.afkMin +
+                        var ausgabe = "Anfangs-F&auml;higkeiten: von " + ergebnisAFK.afkMin +
                                 " bis " + ergebnisAFK.afkMax;
+                        if (isNaN(ergebnisAFK.afkMax)) {
+                            ausgabe = "Bitte gib Werte ein!"
+                        }
+                        document.getElementById("anfangsFKFohlen").innerHTML = ausgabe;
                     }
                 </script>
                 <button type="button" class="btn btn-primary" onclick="anfangsFKBerechnung()">Berechnen</button>
@@ -308,7 +317,11 @@
                     var ergebnisDFK = dressurFK(parseFloat(dGenetischesPotential), parseFloat(dGenetischesPotentialDressur),
                             parseFloat(dDressurFK), dressurBesteFK, parseFloat(dressurRSZ),
                             gesamtReitstunden(dWasserDerJugend, dWolkenfetzen), dGestrandet, false);
-                    document.getElementById("dressurFKErgebnis").innerHTML = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
+                    var ausgabe = "Dressur-F&auml;higkeiten: " + ergebnisDFK;
+                    if (isNaN(ergebnisDFK)) {
+                        ausgabe = "Bitte gib Werte ein!"
+                    }
+                    document.getElementById("dressurFKErgebnis").innerHTML = ausgabe;
 
 
                 }
